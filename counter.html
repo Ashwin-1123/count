@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+        button{
+            margin-right: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    <h2 id="count"></h2>
+    <center>
+        <button type="submit" onclick="inc()"> increase </button>
+        <button type="submit" onclick="res()"> reset </button>
+        <button type="submit" onclick="dec()"> decrease </button>
+    </center><br>
+    <center>
+        <button type="submit" onclick="stp()"> Stop </button>
+    </center>
+    <script>
+        var c = 1;
+        var s=0;
+        var sp = false;
+        function sleep(ms){
+            return new Promise( resolve => setTimeout(resolve,ms));
+        }
+        async function inc(){
+            sp = false;
+            for(let i = 1;i<i+1;i++){
+                if(sp == true){
+                    break;
+                }
+                await sleep(1000);
+                document.getElementById("count").innerHTML = c++;
+            }
+        }
+        function stp(){
+                sp =true;
+                s = c;
+                document.getElementById("count").innerHTML = s;
+            }
+        function res(){
+            c=0;
+            document.getElementById("count").innerHTML = c;
+        }
+        async function dec(){
+            sp = false;
+            for(let i = c-1;i>=0;i--){
+                if(sp == true){
+                    break;
+                }
+                await sleep(1000);
+                document.getElementById("count").innerHTML = c--;
+            }
+        }
+    </script>
+</body>
+</html>
